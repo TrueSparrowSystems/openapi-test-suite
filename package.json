@@ -1,0 +1,30 @@
+{
+  "name": "openapi-test-suite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "@moxiedotxyz/base": "^1.0.0",
+    "http": "0.0.1-security",
+    "https": "^1.0.0",
+    "qs": "^6.10.3",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PLG-Works/openapi-test-suite.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PLG-Works/openapi-test-suite/issues"
+  },
+  "homepage": "https://github.com/PLG-Works/openapi-test-suite#readme"
+}
