@@ -1,5 +1,6 @@
 const rootPrefix = '.',
-  configProvider = require(rootPrefix + '/lib/configProvider');
+  configProvider = require(rootPrefix + '/lib/configProvider'),
+  StartTest = require(rootPrefix + '/lib/Suite/Start');
 
 class ApiTestSuite {
   constructor(openapiObj,serverIndex) {
@@ -7,12 +8,18 @@ class ApiTestSuite {
 
     oThis.openapiObj = openapiObj;
     oThis.serverIndex = serverIndex;
+
     configProvider.setConfig('openapiObj', openapiObj);
     configProvider.setConfig('serverIndex', serverIndex);
   }
 
   runTest() {
-    console.log('inside runTest');
+    console.log('++++++++++++inside runTest');
+
+    const responseData = new StartTest().perform();
+  }
+
+  cleanup() {
   }
 }
 
