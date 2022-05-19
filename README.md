@@ -1,44 +1,33 @@
 
-### DRY test framework
+# Openapi Test Suite
 
-> Automation to generate automation test suite driven by OpenAPI specification. Start API testing and its response behaviour just using OpenAPI.json file.
+## Objective
+This package aims to solve the following two problems:
+1. Maintenance is a big problem to solve in any test suite. As the APIs evolve at a fast pace, maintenance becomes more difficult.
+2. Usually when negative test cases are written, all combinations of parameters are not covered. Writing all the combinations manually is difficult and gets neglected.
 
-### Project Name
+We solve point 1, by consuming the openapi.json file to generate test cases. Openapi.json is auto-generated using a generator script, as described in this [blog](https://plgworks.com/blog/dry-api-docs-and-validations/).
 
-> Openapi Test Suite
+To solve point 2, we use the cartesian product of all possible example values for each parameter to get to the set of all negative test cases.
 
-### Getting Started
+## Approach
+- For each route, we figure out the possible values (correct as well as incorrect) for each parameter. Now, we take the 
+   cartesian product of these sets, to get all possible combinations of parameters. Correctness of the values is based 
+   on the paramter type and paramter constraints (future scope, not in current version) given in openapi.js
+- For all the incorrect combinations, we fire API calls and check whether the API response has the correct param level error.
 
-These instructions will help you install and run openapi-test-suite module.
+## Initialize and run tests
 
-### Objective
-
-In a fast-paced and big project involving many APIs, it takes significant efforts to test and maintain them all manually. It becomes cumbersome to test these APIs against every possible combination of parameters.
-This module overcomes the stated problem by automatically testing every API and its parameters listed in openapi specification.
-
-### Usage
-
-A framework to generate an automation suite to test response behaviour and parameters of APIs:
-- Test cases are generated for every possible combination of parameters. These correct/incorrect values are generated based on the mandatoriness and type of parameters.
-
-- Response validations
-    - for success response, response entities are validated.
-    - for error response, parameter level errors are validated.
-
-### Prerequisites
-
-Implementation of OpenAPI Specification in your Nodejs project.
-
-### Instantiation
 ```
-In node console,
-    openApiObj = require('/config/openapi.json');
-    ApiTestSuite = require('/openapi-test-suite/index.js');
-    serverIndex = 0; // Specify the server index (Local, Test or Production)
+    const openApiObj = require('/config/openapi.json');
+    const ApiTestSuite = require('/openapi-test-suite/index.js');
+    const serverIndex = 0; // Index of the server (to be hit) from the servers block of openapi.json
+    
+    // Run tests
     new ApiTestSuite(openApiObj, serverIndex).runTest();
 ```
 
-### Example
+### Examples
 In node console, try this:
 ```
 openapiObj = {
@@ -237,31 +226,14 @@ Sample response where parameter validation fails:
     API response: {"success":false,"err":{"code":"BAD_REQUEST","msg":"Something went wrong.","error_data":[{"parameter":"country_code","msg":"Invalid parameter country_code.  Please ensure the input is well formed."},{"parameter":"phone_number","msg":"Invalid phone number."}],"internal_id":"v_ap_rd_1"}} 
     cResponse validation error: {"kind":"parameterErrorNotObtained","parameter":"phone_number"} 
 ```
-
-### Error logging
-
-Error Response for correct case
-    
-    All parameters are correct and success response is false 
-
-Parameter Error not obtained
-    
-    Api response error for correct parameter
-
-Response entity type mismatch
-    
-    The response parameter type does not match the required parameter
     
 ## Future Scope
-
-- APIs with parameters involving sensitive fields such as cookies will be added.
-- Constraints on parameters like min-length, max-length, etc will be validated.
-- Parameter combination for optional and mandatory fields and it's validation.
+- Routes that perform cookie validations are not supported currently.
+- Parameter value constraints are not supported.
+- Parameter combination for optional and mandatory fields and their validation.
 
 ## Authors
 
 **[Kartik Kapgate](https://github.com/10kartik), [Vaibhav Dighe](https://github.com/V-R-Dighe), [Ajinkya Chikale](https://github.com/ajinkyac03), [Isha Bansod](https://github.com/ishabansod)**
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this Project.
-
-## License
