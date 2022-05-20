@@ -11,7 +11,7 @@ We solve point 1, by consuming the openapi.json file to generate test cases. Ope
 To solve point 2, we use the cartesian product of all possible example values for each parameter to get to the set of all negative test cases.
 
 ## Approach
-- For each route, we figure out the possible values (correct as well as incorrect) for each parameter. Now, we take the 
+- For each route, we figure out the possible set of values (correct as well as incorrect) for each parameter. Now, we take the 
    cartesian product of these sets, to get all possible combinations of parameters. Correctness of the values is based 
    on the paramter type and paramter constraints (future scope, not in current version) given in openapi.js
 - For all the incorrect combinations, we fire API calls and check whether the API response has the correct param level error.
@@ -211,7 +211,7 @@ openapiObj = {
 }
 
 ApiTestSuite = require('openapi-test-suite/index.js')
-serverIndex = openapiObj.server[0]
+serverIndex = 0;
 new ApiTestSuite(openApiObj,serverIndex).runTest()
 
 ```
