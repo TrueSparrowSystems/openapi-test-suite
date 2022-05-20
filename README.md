@@ -14,7 +14,7 @@ To solve point 2, we use the cartesian product of all possible example values fo
 ## Approach
 - For each route, we figure out the possible set of values (correct as well as incorrect) for each parameter. Now, we take the 
    cartesian product of these sets, to get all possible combinations of parameters. Correctness of the values is based 
-   on the paramter type and paramter constraints (future scope, not in current version) given in openapi.json
+   on the parameter type and parameter constraints (future scope, not in current version) given in openapi.json
 - For all the incorrect combinations, we fire API calls and check whether the API response has the correct param level error.
 
 ## Initialize and run tests
