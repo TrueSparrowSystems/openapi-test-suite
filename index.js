@@ -25,8 +25,6 @@ class ApiTestSuite {
    * @return {Promise<void>}
    */
   runTest() {
-    console.log('++++++++++++inside runTest');
-
     const responseData = new StartTest().perform();
   }
 
