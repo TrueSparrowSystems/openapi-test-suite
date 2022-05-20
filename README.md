@@ -5,6 +5,7 @@
 This package aims to solve the following two problems:
 1. Maintenance is a big problem to solve in any test suite. As the APIs evolve at a fast pace, maintenance becomes more difficult.
 2. Usually when negative test cases are written, all combinations of parameters are not covered. Writing all the combinations manually is difficult and gets neglected.
+3. It also helps with unit testing for developers.
 
 We solve point 1, by consuming the openapi.json file to generate test cases. Openapi.json is auto-generated using a generator script, as described in this [blog](https://plgworks.com/blog/dry-api-docs-and-validations/).
 
@@ -13,7 +14,7 @@ To solve point 2, we use the cartesian product of all possible example values fo
 ## Approach
 - For each route, we figure out the possible values (correct as well as incorrect) for each parameter. Now, we take the 
    cartesian product of these sets, to get all possible combinations of parameters. Correctness of the values is based 
-   on the paramter type and paramter constraints (future scope, not in current version) given in openapi.js
+   on the paramter type and paramter constraints (future scope, not in current version) given in openapi.json
 - For all the incorrect combinations, we fire API calls and check whether the API response has the correct param level error.
 
 ## Initialize and run tests
