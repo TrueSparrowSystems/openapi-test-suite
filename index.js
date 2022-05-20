@@ -1,6 +1,7 @@
 const rootPrefix = '.',
   configProvider = require(rootPrefix + '/lib/configProvider'),
-  StartTest = require(rootPrefix + '/lib/Suite/Start');
+  StartTest = require(rootPrefix + '/lib/Suite/Start'),
+  SchemaValidator = require(rootPrefix + '/lib/schema/Validate');
 
 /**
  * Class for api test suite.
@@ -36,6 +37,10 @@ class ApiTestSuite {
    */
   cleanup() {
     configProvider.deleteConfig();
+  }
+
+  get SchemaValidator() {
+    return SchemaValidator;
   }
 }
 
