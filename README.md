@@ -45,7 +45,20 @@ In the following, we can see that all params were passed correctly, but the API 
     Expected response success: true 
     Incorrect Parameters: {} 
     Response HTTP code: 200 
-    API response: {"success":false,"err":{"code":"BAD_REQUEST","msg":"Something went wrong.","error_data":[{"parameter":"phone_number","msg":"Invalid phone number."}],"internal_id":"INVALID_PHONE_NUMBER"}} 
+    API response: {
+                    "success": false,
+                    "err": {
+                      "code": "BAD_REQUEST",
+                      "msg": "Something went wrong.",
+                      "error_data": [
+                        {
+                          "parameter": "phone_number",
+                          "msg": "Invalid phone number."
+                        }
+                      ],
+                      "internal_id": "INVALID_PHONE_NUMBER"
+                    }
+                  } 
     Response validation error: {"kind":"errorRespForCorrectCase"}
 ```
 
@@ -57,7 +70,16 @@ In the following, we can see that `raw_phone_number` was passed incorrectly, but
     Expected response success: false 
     Incorrect Parameters: {"raw_phone_number":"Value cannot be null"}
     Response HTTP code: 200 
-    API response: {"success":true,"data":{"otp_detail":{"id":69,"sms_identifier":"69:dfdc1b36-3fa8-4b9c-8c09-a61f334dfd9f","uts":1653291961}}} 
+    API response: {
+                    "success": true,
+                    "data": {
+                      "otp_detail": {
+                        "id": 69,
+                        "sms_identifier": "69:dfdc1b36-3fa8-4b9c-8c09-a61f334dfd9f",
+                        "uts": 1653291961
+                      }
+                    }
+                  } 
 ```
 
 #### Case 3: Incorrect parameter passed but not obtained back as an error
@@ -68,7 +90,24 @@ In the following, we can see that `raw_phone_number` was passed incorrectly, but
     Expected response success: false 
     incorrectParamsMap: {"country_code":"Value cannot be string","raw_phone_number":"Value cannot be null"} 
     Response HTTP code: 200 
-    API response: {"success":false,"err":{"code":"BAD_REQUEST","msg":"Something went wrong.","error_data":[{"parameter":"country_code","msg":"Invalid parameter country_code.  Please ensure the input is well formed."},{"parameter":"phone_number","msg":"Invalid phone number."}],"internal_id":"v_ap_rd_1"}} 
+    API response: {
+                    "success": false,
+                    "err": {
+                      "code": "BAD_REQUEST",
+                      "msg": "Something went wrong.",
+                      "error_data": [
+                        {
+                          "parameter": "country_code",
+                          "msg": "Invalid parameter country_code.  Please ensure the input is well formed."
+                        },
+                        {
+                          "parameter": "phone_number",
+                          "msg": "Invalid phone number."
+                        }
+                      ],
+                      "internal_id": "v_ap_rd_1"
+                    }
+                  } 
     Response validation error: {"kind":"parameterErrorNotObtained","parameter":"phone_number"} 
 ```
 
@@ -80,7 +119,15 @@ In the following, we can see that all params were passed correctly, but got the 
     Expected response success: true 
     Incorrect Parameters: {} 
     Response HTTP code: 500 
-    API response: {"success":false,"err":{"code":"INTERNAL_SERVER_ERROR","msg":"Something went wrong.","error_data":[],"internal_id":"PHONE_NUMBER_DOES_NOT_EXIST"}} 
+    API response: {
+                    "success": false,
+                    "err": {
+                      "code": "INTERNAL_SERVER_ERROR",
+                      "msg": "Something went wrong.",
+                      "error_data": [],
+                      "internal_id": "PHONE_NUMBER_DOES_NOT_EXIST"
+                    }
+                  } 
     Response validation error: {"kind":"errorRespForCorrectCase"} 
 ```
 
@@ -92,7 +139,16 @@ In the following, we can see that all params were passed correctly, but got `res
    Expected response success: true 
    Incorrect Parameters: {} 
    Response HTTP code: 200 
-   API response: {"success":true,"data":{"otp_detail":{"id":"abc","sms_identifier":"72:83c91ffc-9741-492f-8fbf-f61d6e9b9ba8","uts":1653293902}}} 
+   API response: {
+                   "success": true,
+                   "data": {
+                     "otp_detail": {
+                       "id": "abc",
+                       "sms_identifier": "72:83c91ffc-9741-492f-8fbf-f61d6e9b9ba8",
+                       "uts": 1653293902
+                     }
+                   }
+                 } 
    Response validation error: {"kind":"respEntityTypeMismatch","debugLevel":"response.data.otp_detail.id","schemaType":"string"} 
 ```
 
