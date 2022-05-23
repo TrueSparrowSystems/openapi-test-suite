@@ -37,6 +37,12 @@ class ApiTestSuite {
     configProvider.deleteConfig();
   }
 
+  /**
+   * Schema Validator
+   *
+   * @returns {*}
+   * @constructor
+   */
   get SchemaValidator() {
     return SchemaValidator;
   }
