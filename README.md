@@ -162,3 +162,4 @@ In the following, we can see that all params were passed correctly, but got `res
 - Parameter value constraints are not supported.
 - Parameter combination for optional and mandatory fields and their validation.
 - Security related tests for example SQL injection attempts.
+- Error schema in component section and it's use.
