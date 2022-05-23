@@ -37,9 +37,10 @@ apiSuiteObj.cleanup();
 ```
 
 ### Examples
-// TODO - Ajinkya
+// TODO - Ajinkya / Isha
 
-Sample response where parameter validation fails:
+#### Case 3: Incorrect parameter passed but not obtained back as an error
+In the following, we can see that `raw_phone_number` was passed incorrectly, but the API response `error_data` does not convey the same.
 ```
     GET /api/admin/web/login/phone/otp 
     params: {"country_code":"959bb2","raw_phone_number":null} 
