@@ -1,0 +1,32 @@
+{
+  "correctData" : [
+    {
+      "id":1,
+      "email":"abc@xyz.com",
+      "name":"abc",
+      "status":"ACTIVE",
+      "uts":1234567890
+    }, {
+      "id":2,
+      "email":"efg@xyz.com",
+      "name":"efg",
+      "status":"ACTIVE",
+      "uts":1234567890
+    }
+  ],
+  "incorrectData" : [
+    {
+      "id":1,
+      "email":"abc@xyz.com",
+      "name":0,
+      "status":"ACTIVE",
+      "uts":1234567890
+    }, {
+      "id":2,
+      "email":"efg@xyz.com",
+      "name":"efg",
+      "status":"ACTIVE",
+      "uts":1234567890
+    }
+  ]
+}

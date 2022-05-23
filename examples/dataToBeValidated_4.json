@@ -1,0 +1,8 @@
+{
+  "correctData": {
+    "email": "abc@xyz.com"
+  },
+  "incorrectData": {
+    "email": 1234
+  }
+}

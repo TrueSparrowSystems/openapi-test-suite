@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "example": 123,
+        "description": "BE notes: this is the id of users table"
+      },
+      "email": {
+        "type": "string",
+        "example": "david@example.com"
+      },
+      "name": {
+        "type": "string",
+        "example": "David"
+      },
+      "status": {
+        "type": "string",
+        "example": "ACTIVE"
+      },
+      "uts": {
+        "type": "integer",
+        "example": 1651666861
+      }
+    },
+    "required": [
+      "id",
+      "email",
+      "status",
+      "uts"
+    ]
+  }
+}

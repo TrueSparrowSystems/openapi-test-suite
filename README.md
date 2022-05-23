@@ -153,10 +153,102 @@ In the following, we can see that all params were passed correctly, but got `res
 ```
 
 ## Schema Validator
-// TODO - Vaibhav / Kartik
+Using schema validator we can recursively cross validate the data against its schema.
 
 ### Examples
+Get schema validator class using apiSuiteObj.
+```
+    const schemaValidator = apiSuiteObj.SchemaValidator;
+```
+Then call validateObjectBySchema(data,dataSchema,debugLevel) method of schemaValidator class with following arguments:
+1) data = Data to be validated (dataType : object).
+2) dataSchema = Schema against which we want to validate the given data (dataType : object).
+3) debugLevel = String value which helps in debugging (dataType : string).
 
+Note: validateObjectBySchema function throws error only in case of incorrect data.
+#### Case 1: Validate object data.
+```
+    const data = require('./examples/dataToBeValidated_1.json');
+    const dataSchema = require('./examples/dataSchema_1.json');
+    const correctData = data.correctData;
+    const incorrectData = data.incorrectData;
+```
+With correct data
+```
+new schemaValidator().validateObjectBySchema(correctData,dataSchema,'Response');
+```
+With incorrect data
+```
+new schemaValidator().validateObjectBySchema(incorrectData,dataSchema,'Response');
+```
+Logs:
+```
+{
+  kind: 'respEntityTypeMismatch',
+  debugLevel: 'VALUE(Response).status',
+  schemaType: 'string'
+}
+```
+here kind indicates the type of validation error, debugLevel indicates the level at which the validation failed and schemaType indicates expected schema.
+#### Case 2: Validate array of object data.
+```
+    const data = require('./examples/dataToBeValidated_2.json');
+    const dataSchema = require('./examples/dataSchema_2.json');
+    const correctData = data.correctData;
+    const incorrectData = data.incorrectData;
+    
+```
+```
+new schemaValidator().validateObjectBySchema(incorrectData,dataSchema,'Response');
+```
+Logs:
+```
+{
+  kind: 'respEntityTypeMismatch',
+  debugLevel: 'Response.[0].name',
+  schemaType: 'string'
+}
+```
+#### Case 3: Validate array of integer data.
+```
+    const data = require('./examples/dataToBeValidated_3.json');
+    const dataSchema = require('./examples/dataSchema_3.json');
+    
+    const correctData = data.correctData;
+    const incorrectData = data.incorrectData;
+    
+```
+```
+new schemaValidator().validateObjectBySchema(incorrectData,dataSchema,'Response');
+```
+Logs:
+```
+{
+  kind: 'respEntityTypeMismatch',
+  debugLevel: 'Response',
+  schemaType: 'array'
+}
+```
+#### Case 4: Validate string data.
+```
+    const data = require('./examples/dataToBeValidated_4.json');
+    const dataSchema = require('./examples/dataSchema_4.json');
+    
+    const correctData = data.correctData;
+    const incorrectData = data.incorrectData;
+    
+```
+```
+new schemaValidator().validateObjectBySchema(incorrectData,dataSchema,'Response');
+```
+Logs:
+```
+{
+  kind: 'respEntityTypeMismatch',
+  debugLevel: 'Response',
+  schemaType: 'string'
+}
+```
 ## Future Scope
 - Routes that perform cookie validations are not supported currently.
 - Parameter value constraints are not supported.
