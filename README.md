@@ -1,4 +1,3 @@
-
 # Openapi Test Suite
 
 ## Objective

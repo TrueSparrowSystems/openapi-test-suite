@@ -15,9 +15,23 @@
     "qs": "^6.10.3",
     "url": "^0.11.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "7.20.0",
+    "lint-staged": "10.5.4",
+    "pre-commit": "1.2.2",
+    "prettier": "1.13.7"
+  },
+  "pre-commit": [
+    "pre-commit"
+  ],
+  "lint-staged": {
+    "*.js": [
+      "prettier --write --config .prettierrc.json",
+      "git add"
+    ]
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pre-commit": "lint-staged"
   },
   "repository": {
     "type": "git",

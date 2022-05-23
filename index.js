@@ -1,35 +1,36 @@
 const rootPrefix = '.',
   configProvider = require(rootPrefix + '/lib/configProvider'),
-  StartTest = require(rootPrefix + '/lib/Suite/Start'),
+  StartSuite = require(rootPrefix + '/lib/Suite/Start'),
   SchemaValidator = require(rootPrefix + '/lib/schema/Validate');
 
 /**
- * Class for api test suite.
+ * Class exposed by this package
  *
  * @class ApiTestSuite
  */
 class ApiTestSuite {
-  constructor(openapiObj,serverIndex) {
+  constructor(openapiObj, serverIndex) {
     const oThis = this;
 
     oThis.openapiObj = openapiObj;
     oThis.serverIndex = serverIndex;
 
+    // Saving the params in-memory via configProvider
     configProvider.setConfig('openapiObj', openapiObj);
     configProvider.setConfig('serverIndex', serverIndex);
   }
 
   /**
-   * Start api testing.
+   * Start the suite to run test cases
    *
    * @return {Promise<void>}
    */
   runTest() {
-    const responseData = new StartTest().perform();
+    new StartSuite().perform();
   }
 
   /**
-   * Cleanup config.
+   * Cleanup the in-memory saved config
    *
    * @return {Promise<void>}
    */
@@ -38,7 +39,7 @@ class ApiTestSuite {
   }
 
   /**
-   * Schema Validator
+   * Schema Validator to validate data vs dataSchema
    *
    * @returns {*}
    * @constructor
