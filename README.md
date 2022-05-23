@@ -196,7 +196,6 @@ here kind indicates the type of validation error, debugLevel indicates the level
     const dataSchema = require('./examples/dataSchema_2.json');
     const correctData = data.correctData;
     const incorrectData = data.incorrectData;
-    
 ```
 ```
 new schemaValidator().validateObjectBySchema(incorrectData,dataSchema,'Response');
@@ -216,7 +215,6 @@ Logs:
     
     const correctData = data.correctData;
     const incorrectData = data.incorrectData;
-    
 ```
 ```
 new schemaValidator().validateObjectBySchema(incorrectData,dataSchema,'Response');
@@ -236,7 +234,6 @@ Logs:
     
     const correctData = data.correctData;
     const incorrectData = data.incorrectData;
-    
 ```
 ```
 new schemaValidator().validateObjectBySchema(incorrectData,dataSchema,'Response');
