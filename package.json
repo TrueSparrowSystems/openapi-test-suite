@@ -1,13 +1,13 @@
 {
   "name": "@plgworks/openapi-test-suite",
   "version": "1.0.0",
-  "description": "",
+  "description": "DRY API test suite using openapi.json",
   "main": "index.js",
   "directories": {
     "lib": "lib"
   },
   "dependencies": {
-    "@moxiedotxyz/base": "^1.0.0",
+    "@plgworks/base": "^1.0.0",
     "bignumber.js": "9.0.2",
     "html-entities": "2.3.3",
     "http": "0.0.1-security",
@@ -37,8 +37,12 @@
     "type": "git",
     "url": "git+https://github.com/PLG-Works/openapi-test-suite.git"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "openapi",
+    "test suite"
+  ],
+  "author": "PLG Works",
+  "license": "LGPL-3.0",
   "bugs": {
     "url": "https://github.com/PLG-Works/openapi-test-suite/issues"
   },
