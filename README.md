@@ -25,11 +25,11 @@ For installing the npm package, run following command in terminal:
 ## Initialize
 
 ```node
-    const openapiObj = require('./examples/openapi_1.json');
+    const openapiObj = require('@plgworks/openapi-test-suite');
     
     const ApiTestSuite = require('@plgworks/openapi-test-suite')
     const serverIndex = 0; // Index of the server (to be hit) from the servers block of openapi.json
-    const apiSuiteObj = new ApiTestSuite(openApiObj,serverIndex);
+    const apiSuiteObj = new ApiTestSuite(openApiObj, serverIndex);
 ```
 
 ## Run Test Suite
