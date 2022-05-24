@@ -1,4 +1,5 @@
 # Openapi Test Suite
+![npm version](https://img.shields.io/npm/v/@plgworks/openapi-test-suite.svg?style=flat)
 
 ## Objective
 This package aims to solve the following two problems:
