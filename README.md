@@ -16,23 +16,29 @@ To solve point 2, we use the cartesian product of possible (correct as well as i
    on the parameter type and parameter constraints given in openapi.json
 - For all the incorrect combinations, we fire API calls and check whether the API response has the correct param level error.
 
+## Install
+For installing the npm package, run following command in terminal:
+```
+    npm install @plgworks/openapi-test-suite
+```
+
 ## Initialize
 
-```
+```node
     const openapiObj = require('./examples/openapi_1.json');
     
-    const ApiTestSuite = require('openapi-test-suite/index.js')
+    const ApiTestSuite = require('@plgworks/openapi-test-suite')
     const serverIndex = 0; // Index of the server (to be hit) from the servers block of openapi.json
     const apiSuiteObj = new ApiTestSuite(openApiObj,serverIndex);
 ```
 
 ## Run Test Suite
-```
-// To run the test suite, use following command
-apiSuiteObj.runTest();
+```node
+    // To run the test suite, use following command
+    apiSuiteObj.runTest();
 
-// After the test suite run is over, it is recommended to call cleanup because the openApiObj and serverIndex are in-memory cached.
-apiSuiteObj.cleanup();
+    // After the test suite run is over, it is recommended to call cleanup because the openApiObj and serverIndex are in-memory cached.
+    apiSuiteObj.cleanup();
 ```
 
 ### Examples
