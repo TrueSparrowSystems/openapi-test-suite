@@ -26,7 +26,7 @@ class ApiTestSuite {
    * @return {Promise<void>}
    */
   runTest() {
-    new StartSuite().perform();
+    new StartSuite({}).perform();
   }
 
   /**
