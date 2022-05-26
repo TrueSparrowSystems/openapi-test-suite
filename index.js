@@ -26,7 +26,21 @@ class ApiTestSuite {
    * @return {Promise<void>}
    */
   runTest() {
-    new StartSuite({}).perform();
+    const customPaths = [
+      {
+        route: '/api/admin/web/login/phone/otp',
+        method: 'get',
+        params: { raw_phone_number: '$ref:$atIndex[0].res.obtainedToken', country_code: 91 }
+      },
+      {
+        route: '/api/otp/verify',
+        method: 'post',
+        params: { some_token: '$ref:$responseData[0].res.obtainedToken' }
+      }
+    ];
+    new StartSuite({
+      customPaths
+    }).perform();
   }
 
   /**
