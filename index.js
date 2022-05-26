@@ -26,25 +26,35 @@ class ApiTestSuite {
    * @return {Promise<void>}
    */
   runTest() {
-    const customPaths = [
-      {
-        route: '/api/admin/web/login/phone/otp',
-        method: 'get',
-        params: { raw_phone_number: '9834956688', country_code: 91 }
+    const securityInfo = {
+      requestHeaders: {
+        'Content-Security-Policy':
+          "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
       },
-      {
-        route: '/api/admin/web/login/phone/otp',
-        method: 'post',
-        params: {
-          raw_phone_number: '9834956688',
-          country_code: 91,
-          sms_identifier: '$ref:$atIndex[0].data.apiResponse.data.otp_detail.sms_identifier',
-          otp: 1111
+      adminAuth: {
+        cookies: {
+          aulc: {
+            Name: 'aulc',
+            Value:
+              's%3A1%3Aapp%3A1%3Aphone%3A1653568774.691%3A7f8ebcc918c4b0ab377713e0a6a278992424500f1dfd673bdfc023e4e04236f8.moH51HKpGOeyCKEWanY8oU2BxU81GfDvogA9XCcC1uQ'
+          },
+          culc: {
+            Name: 'aclc',
+            Value:
+              's%3A1%3Aapp%3A1%3Aphone%3A1653568774.691%3A7f8ebcc918c4b0ab377713e0a6a278992424500f1dfd673bdfc023e4e04236f8.moH51HKpGOeyCKEWanY8oU2BxU81GfDvogA9XCcC1uQ'
+          }
+        },
+        headers: {
+          'X-Frame-Options': 'SAMEORIGIN'
         }
+      },
+      adminAuth2: {
+        cookies: {}
       }
-    ];
+    };
+
     new StartSuite({
-      customPaths
+      securityInfo
     }).perform();
   }
 
