@@ -30,12 +30,17 @@ class ApiTestSuite {
       {
         route: '/api/admin/web/login/phone/otp',
         method: 'get',
-        params: { raw_phone_number: '$ref:$atIndex[0].res.obtainedToken', country_code: 91 }
+        params: { raw_phone_number: '9834956688', country_code: 91 }
       },
       {
-        route: '/api/otp/verify',
+        route: '/api/admin/web/login/phone/otp',
         method: 'post',
-        params: { some_token: '$ref:$responseData[0].res.obtainedToken' }
+        params: {
+          raw_phone_number: '9834956688',
+          country_code: 91,
+          sms_identifier: '$ref:$atIndex[0].data.apiResponse.data.otp_detail.sms_identifier',
+          otp: 1111
+        }
       }
     ];
     new StartSuite({
