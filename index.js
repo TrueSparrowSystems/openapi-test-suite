@@ -27,29 +27,15 @@ class ApiTestSuite {
    */
   runTest() {
     const securityInfo = {
-      requestHeaders: {
-        'Content-Security-Policy':
-          "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
-      },
+      requestHeaders: {},
       adminAuth: {
         cookies: {
           aulc: {
             Name: 'aulc',
             Value:
-              's%3A1%3Aapp%3A1%3Aphone%3A1653568774.691%3A7f8ebcc918c4b0ab377713e0a6a278992424500f1dfd673bdfc023e4e04236f8.moH51HKpGOeyCKEWanY8oU2BxU81GfDvogA9XCcC1uQ'
-          },
-          culc: {
-            Name: 'aclc',
-            Value:
-              's%3A1%3Aapp%3A1%3Aphone%3A1653568774.691%3A7f8ebcc918c4b0ab377713e0a6a278992424500f1dfd673bdfc023e4e04236f8.moH51HKpGOeyCKEWanY8oU2BxU81GfDvogA9XCcC1uQ'
+              's%3A1%3Aapp%3A1%3Aphone%3A1653632387.725%3Aed9038b099555d46f9a0ed3ac0eb4bd682cd2f0b3c0197edb47c7030e5a23892.4rcUaIpwNVioQchnYdmh2aqovrFgEnOff0%2BWfNI5BK8'
           }
-        },
-        headers: {
-          'X-Frame-Options': 'SAMEORIGIN'
         }
-      },
-      adminAuth2: {
-        cookies: {}
       }
     };
 
