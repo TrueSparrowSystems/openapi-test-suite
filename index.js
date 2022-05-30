@@ -28,12 +28,12 @@ class ApiTestSuite {
   runTest() {
     const securityInfo = {
       requestHeaders: {},
-      adminAuth: {
+      userAuth: {
         cookies: {
           aulc: {
             Name: 'aulc',
             Value:
-              's%3A1%3Aapp%3A1%3Aphone%3A1653632387.725%3Aed9038b099555d46f9a0ed3ac0eb4bd682cd2f0b3c0197edb47c7030e5a23892.4rcUaIpwNVioQchnYdmh2aqovrFgEnOff0%2BWfNI5BK8'
+              's%3A1%3Aapp%3A1%3Aphone%3A1653897346.477%3A11e495083f8a1bb338ce6e10d9f2eed39252521d84e75aa5bf254c97911d9550.962O00SLpO0mEmsypUGDglrN7wgoItB0EKhSxe6t0c8'
           }
         }
       }
