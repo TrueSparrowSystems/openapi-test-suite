@@ -16,6 +16,9 @@ To solve point 2, we use the cartesian product of possible (correct as well as i
    cartesian product of these sets, to get all possible combinations of parameters. Correctness of the values is based 
    on the parameter type and parameter constraints given in openapi.json
 - For all the incorrect combinations, we fire API calls and check whether the API response has the correct param level error.
+- In each route, every optional parameter is tested with its correct, incorrect as well as null value.
+- For cookie protected routes, we can include a Security Scheme object as a third argument while initializing the package. This object will be automatically consumed
+   based on the specific security requirements of a route. If the cookies provided in Security Scheme object cannot be validated then http error 401 Unauthorized is expected.
 
 ## Install
 For installing the npm package, run following command in terminal:
@@ -28,9 +31,10 @@ For installing the npm package, run following command in terminal:
 ```node
     const openapiObj = require('@plgworks/openapi-test-suite');
     
-    const ApiTestSuite = require('@plgworks/openapi-test-suite')
+    const ApiTestSuite = require('@plgworks/openapi-test-suite');
     const serverIndex = 0; // Index of the server (to be hit) from the servers block of openapi.json
-    const apiSuiteObj = new ApiTestSuite(openApiObj, serverIndex);
+    const securityScheme = require('./examples/securityScheme.json');
+    const apiSuiteObj = new ApiTestSuite(openApiObj, serverIndex, securityScheme);
 ```
 
 ## Run Test Suite
@@ -159,6 +163,52 @@ In the following, we can see that all params were passed correctly, but got `res
    Response validation error: {"kind":"respEntityTypeMismatch","debugLevel":"response.data.otp_detail.id","schemaType":"string"} 
 ```
 
+#### Case 6: Incorrect cookie value and correct parameters passed.
+In the following, we can see that incorrect cookie value was passed, so the expected response http code was 401; but the API response received `success` as true.
+```
+   GET /api/consumer/v1/user/current 
+   params: {"country_code":91,"raw_phone_number":"9876543233"} 
+   Expected response success: false 
+   Incorrect Parameters: {} 
+   Response HTTP code: 200 
+   API response: {
+                   "success": true,
+                   "data": {
+                           "current_user": {
+                               "id": 100000,
+                               "first_name": "ishaphone",
+                               "last_name": "lastn",
+                               "basic_user_detail_id": 100000,
+                               "status": "ACTIVE",
+                               "uts": 1651651178
+                           }
+                    }
+                 }
+   Response validation error: {"kind":"mandatoryCookieValidationFailed"}
+   Request headers: {"Cookie":"aulc=25de238247286fa7fc7b9cbd071a45eda87f8690dd524cbf71c104d1d7e8252ef2dc4a698a389368dceb673238ccc47a342b611fdd00e3522183c25d6fb866faf368a7f9ec716e9df4b446d3541cd"} 
+```
+
+#### Case 7: Correct cookie value and incorrect parameters passed.
+In the following, correct cookie value was passed with incorrect combination of parameters, but got http code 401.
+```
+    GET /api/consumer/v1/user/current 
+       params: {"country_code":91,"raw_phone_number":null}
+       Expected response success: false 
+       Incorrect Parameters: {"raw_phone_number":"Value cannot be null"} 
+       Response HTTP code: 401 
+       API response: {
+                       "success": false,
+                       "err": {
+                         "code": "UNAUTHORIZED",
+                         "msg": "Access denied due to invalid credentials.",
+                         "error_data": [],
+                         "internal_id": "l_ch_vclcr_2"
+                       }
+                     }
+       Response validation error: {"kind":"unauthorizedApiRequestForValidCookie"}
+       Request headers: {"Cookie":"aulc=25de238247286fa7fc7b9cbd071a45eda87f8690dd524cbf71c104d1d7e8252ef2dc4a698a389368dceb673238ccc47a342b611fdd00e3522183c25d6fb866faf368a7f9ec716e9df4b446d3541cd"} 
+```
+
 ## Schema Validator
 Using schema validator we can recursively cross validate the data against its schema.
 
@@ -196,7 +246,7 @@ Logs:
   schemaType: 'string'
 }
 ```
-here kind indicates the type of validation error, debugLevel indicates the level at which the validation failed and schemaType indicates expected schema.
+Here kind indicates the type of validation error, debugLevel indicates the level at which the validation failed and schemaType indicates expected schema.
 #### Case 2: Validate array of object data.
 ```
     const data = require('./examples/dataToBeValidated_2.json');
@@ -254,8 +304,5 @@ Logs:
 }
 ```
 ## Future Scope
-- Routes that perform cookie validations are not supported currently.
-- Parameter value constraints are not supported.
-- Parameter combination for optional and mandatory fields and their validation.
 - Security related tests for example SQL injection attempts.
 - Error schema in component section and it's use.
