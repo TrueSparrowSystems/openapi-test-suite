@@ -303,6 +303,17 @@ Logs:
   schemaType: 'string'
 }
 ```
+## SQL & Executable Commands Injection.
+Using Start security test we can test our API Vulnerabilities against SQL and Command Injection attacks.
+
+### Examples
+Get Start security test class using apiSuiteObj.
+```
+    apiSuiteObj.runSecurityTest();
+```
+- To check if SQL or Command injection query was executed, we need developer's support to monitor the logs and check if any resources were affected.
+- This test can only be executed for routes which require parameters.
+
 ## Future Scope
 - Security related tests for example SQL injection attempts.
 - Error schema in component section and it's use.
