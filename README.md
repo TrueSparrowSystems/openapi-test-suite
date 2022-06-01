@@ -49,7 +49,7 @@ For installing the npm package, run following command in terminal:
 ### Examples
 
 #### Case 1: Expected success true but received false.
-In the following, we can see that all params were passed correctly, but the API response received `success` as false.
+In the following, all params were passed correctly, but the API response received `success` as false.
 ```
     GET /api/admin/web/login/phone/otp 
     params: {"country_code":1,"raw_phone_number":"9878654325"} 
@@ -74,7 +74,7 @@ In the following, we can see that all params were passed correctly, but the API 
 ```
 
 #### Case 2: Expected success false but received true.
-In the following, we can see that `raw_phone_number` was passed incorrectly, but the API response received `success` as true.
+In the following, `raw_phone_number` was passed incorrectly, but the API response received `success` as true.
 ```
     GET /api/admin/web/login/phone/otp 
     params: {"country_code":91,"raw_phone_number":null} 
@@ -94,7 +94,7 @@ In the following, we can see that `raw_phone_number` was passed incorrectly, but
 ```
 
 #### Case 3: Incorrect parameter passed but not obtained back as an error
-In the following, we can see that `raw_phone_number` was passed incorrectly, but the API response `error_data` does not convey the same.
+In the following, `raw_phone_number` was passed incorrectly, but the API response `error_data` does not convey the same.
 ```
     GET /api/admin/web/login/phone/otp 
     params: {"country_code":"959bb2","raw_phone_number":null} 
@@ -123,7 +123,7 @@ In the following, we can see that `raw_phone_number` was passed incorrectly, but
 ```
 
 #### Case 4: Correct parameter passed but got API error.
-In the following, we can see that all params were passed correctly, but got the api error "Something went wrong".
+In the following, all params were passed correctly, but got the api error "Something went wrong".
 ```
     GET /api/admin/web/login/phone/otp 
     params: {"country_code":91,"raw_phone_number":"9876543239"} 
@@ -143,7 +143,7 @@ In the following, we can see that all params were passed correctly, but got the 
 ```
 
 #### Case 5: Correct parameter passed but error in schema validation.
-In the following, we can see that all params were passed correctly, but got `respEntityTypeMismatch` error.
+In the following, all params were passed correctly, but got `respEntityTypeMismatch` error.
 ```
    GET /api/admin/web/login/phone/otp 
    params: {"country_code":91,"raw_phone_number":"9876543233"} 
@@ -164,7 +164,7 @@ In the following, we can see that all params were passed correctly, but got `res
 ```
 
 #### Case 6: Incorrect cookie value and correct parameters passed.
-In the following, we can see that incorrect cookie value was passed, so the expected response http code was 401; but the API response received `success` as true.
+In the following, incorrect cookie value was passed, so the expected response http code was 401; but the API response received `success` as true.
 ```
    GET /api/consumer/v1/user/current 
    params: {"country_code":91,"raw_phone_number":"9876543233"} 
@@ -210,7 +210,7 @@ In the following, correct cookie value was passed with incorrect combination of 
 ```
 
 ## Schema Validator
-Using schema validator we can recursively cross validate the data against its schema.
+Using schema validator, the data can be recursively cross validated against its schema.
 
 ### Examples
 Get schema validator class using apiSuiteObj.
@@ -219,7 +219,7 @@ Get schema validator class using apiSuiteObj.
 ```
 Then call validateObjectBySchema(data,dataSchema,debugLevel) method of schemaValidator class with following arguments:
 1) data = Data to be validated (dataType : object).
-2) dataSchema = Schema against which we want to validate the given data (dataType : object).
+2) dataSchema = Schema against which the given data should be validated. (dataType : object).
 3) debugLevel = String value which helps in debugging (dataType : string).
 
 Note: validateObjectBySchema function throws error only in case of incorrect data.
@@ -304,16 +304,23 @@ Logs:
 }
 ```
 ## SQL & Executable Commands Injection.
-Using Start security test we can test our API Vulnerabilities against SQL and Command Injection attacks.
+Using Start security test you can test your API parameters' vulnerabilities against SQL and Command Injection attacks.
 
-### Examples
-Get Start security test class using apiSuiteObj.
+Manual monitoring of API logs is needed to check if any resources are affected by SQL or Commands injection queries.
+
+Execute security test class using apiSuiteObj.
 ```
     apiSuiteObj.runSecurityTest();
 ```
-- To check if SQL or Command injection query was executed, we need developer's support to monitor the logs and check if any resources were affected.
-- This test can only be executed for routes which require parameters.
+### Example
+API request will be executed for injection queries against each parameter.
+
+```
+GET /api/consumer/v1/signup/phone/otp 
+Request headers: {} 
+params: {"country_code":"OR 1=1#","raw_phone_number":"1111111111"}
+```
+
 
 ## Future Scope
-- Security related tests for example SQL injection attempts.
 - Error schema in component section and it's use.
