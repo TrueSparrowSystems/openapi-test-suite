@@ -29,11 +29,7 @@ class ApiTestSuite {
    * @return {Promise<void>}
    */
   runTest() {
-    const oThis = this;
-
-    new StartSuite({
-      securityInfo: oThis.securityInfo
-    }).perform();
+    new StartSuite().perform();
   }
 
   /**
@@ -42,11 +38,7 @@ class ApiTestSuite {
    * @return {Promise<void>}
    */
   runSecurityTest() {
-    const securityInfo = require('./examples/securityScheme.json');
-
-    new StartSecurityTest({
-      securityInfo
-    }).perform();
+    new StartSecurityTest().perform();
   }
 
   /**
