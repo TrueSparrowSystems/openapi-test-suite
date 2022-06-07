@@ -1,0 +1,179 @@
+{
+  "definition": {
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Node JS API",
+      "description": "REST API implemented using Node JS",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000",
+        "description": "Local dev server"
+      }
+    ],
+    "components": {
+      "schemas": {
+        "otp_detail": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "example": 1
+            },
+            "sms_identifier": {
+              "type": "string",
+              "example": "1:abc-111-rrr"
+            },
+            "uts": {
+              "type": "integer",
+              "example": 1651666861
+            }
+          },
+          "required": [
+            "id",
+            "sms_identifier",
+            "uts"
+          ]
+        },
+        "current_admin": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "example": 1,
+              "description": "This is the id of admin table"
+            },
+            "first_name": {
+              "type": "string",
+              "example": "Alex"
+            },
+            "last_name": {
+              "type": "string",
+              "example": "Morgan"
+            },
+            "profile_image_id": {
+              "type": "integer",
+              "example": 1651666861,
+              "description": "profile_image_id is images table id"
+            },
+            "default_profile_image_id": {
+              "type": "integer",
+              "example": -1,
+              "description": "default_profile_image_id is static map id (-1,-2)"
+            },
+            "status": {
+              "type": "integer",
+              "example": 1
+            },
+            "uts": {
+              "type": "integer",
+              "example": 1651666861
+            }
+          },
+          "required": [
+            "id",
+            "status",
+            "default_profile_image_id",
+            "uts"
+          ]
+        },
+        "images": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": 100000
+              },
+              "resolutions": {
+                "type": "string",
+                "example": "{\"520w\":{\"s\":40330,\"h\":\"520\",\"w\":\"520\"},\"260w\":{\"s\":20391,\"h\":\"260\",\"w\":\"260\"}}",
+                "description": "This is the resolution of image. it contains size, height and width"
+              },
+              "status": {
+                "type": "string",
+                "example": "ACTIVE"
+              },
+              "uts": {
+                "type": "integer",
+                "example": 1651666861
+              }
+            },
+            "required": [
+              "id",
+              "status",
+              "uts"
+            ]
+          },
+          "example": {
+            "100000": {
+              "id": 100000,
+              "resolutions": "{\"520w\":{\"s\":40330,\"h\":\"520\",\"w\":\"520\"},\"260w\":{\"s\":20391,\"h\":\"260\",\"w\":\"260\"}}",
+              "status": "ACTIVE",
+              "uts": 1651666861
+            }
+          }
+        }
+      }
+    },
+    "paths": {
+      "/api/admin/web/login/phone/otp": {
+        "get": {
+          "summary": "Get login otp for admin",
+          "tags": [
+            "Admin Auth"
+          ],
+          "parameters": [
+            {
+              "in": "query string",
+              "name": "country_code",
+              "required": true,
+              "schema": {
+                "type": "number"
+              }
+            },
+            {
+              "in": "query string",
+              "name": "raw_phone_number",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "success": {
+                        "type": "string",
+                        "example": true
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "otp_detail": {
+                            "$ref": "#/components/schemas/otp_detail"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "apis": [
+    "./routes/api/admin/web/index"
+  ]
+}

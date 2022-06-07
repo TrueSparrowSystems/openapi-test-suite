@@ -1,0 +1,48 @@
+{
+  "name": "@plgworks/openapi-test-suite",
+  "version": "1.0.0",
+  "description": "DRY API test suite using openapi.json",
+  "main": "index.js",
+  "scripts": {
+    "pre-commit": "lint-staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PLG-Works/openapi-test-suite.git"
+  },
+  "keywords": [
+    "openapi",
+    "test suite"
+  ],
+  "author": "PLG Works",
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/PLG-Works/openapi-test-suite/issues"
+  },
+  "homepage": "https://github.com/PLG-Works/openapi-test-suite#readme",
+  "dependencies": {
+    "@plgworks/base": "^1.0.0",
+    "bignumber.js": "9.0.2",
+    "html-entities": "2.3.3",
+    "http": "0.0.1-security",
+    "https": "1.0.0",
+    "qs": "6.10.3",
+    "set-cookie-parser": "2.4.8",
+    "url": "0.11.0"
+  },
+  "devDependencies": {
+    "eslint": "7.20.0",
+    "lint-staged": "10.5.4",
+    "pre-commit": "1.2.2",
+    "prettier": "1.13.7"
+  },
+  "pre-commit": [
+    "pre-commit"
+  ],
+  "lint-staged": {
+    "*.js": [
+      "prettier --write --config .prettierrc.json",
+      "git add"
+    ]
+  }
+}
