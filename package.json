@@ -24,11 +24,8 @@
     "@plgworks/base": "^1.0.0",
     "bignumber.js": "9.0.2",
     "html-entities": "2.3.3",
-    "http": "0.0.1-security",
-    "https": "1.0.0",
     "qs": "6.10.3",
-    "set-cookie-parser": "2.4.8",
-    "url": "0.11.0"
+    "set-cookie-parser": "2.4.8"
   },
   "devDependencies": {
     "eslint": "7.20.0",
