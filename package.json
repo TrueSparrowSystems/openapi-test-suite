@@ -1,6 +1,6 @@
 {
   "name": "@truesparrow/openapi-test-suite",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "DRY API test suite using openapi.json",
   "main": "index.js",
   "scripts": {
