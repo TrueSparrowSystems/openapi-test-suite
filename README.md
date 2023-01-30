@@ -1,5 +1,5 @@
 # Openapi Test Suite
-![npm version](https://img.shields.io/npm/v/@plgworks/openapi-test-suite.svg?style=flat)
+![npm version](https://img.shields.io/npm/v/@truesparrow/openapi-test-suite.svg?style=flat)
 
 ## Objective
 This package aims to solve the following two problems:
@@ -7,7 +7,7 @@ This package aims to solve the following two problems:
 2. Usually when negative test cases are written, all combinations of parameters are not covered. Writing all the combinations manually is difficult and gets neglected.
 
 We solve point 1, by consuming the openapi.json file to generate test cases in DRY manner.
-Openapi.json is auto-generated using a generator script, as described in this [blog](https://plgworks.com/blog/dry-api-docs-and-validations/).
+Openapi.json is auto-generated using a generator script, as described in this [blog](https://truesparrow.com/blog/dry-api-docs-and-validations/).
 
 To solve point 2, we use the cartesian product of possible (correct as well as incorrect) sets of values for each parameter to get to the set of all negative test cases.
 
@@ -23,15 +23,15 @@ To solve point 2, we use the cartesian product of possible (correct as well as i
 ## Install
 For installing the npm package, run following command in terminal:
 ```
-    npm install @plgworks/openapi-test-suite
+    npm install @truesparrow/openapi-test-suite
 ```
 
 ## Initialize
 
 ```node
-    const openapiObj = require('@plgworks/openapi-test-suite');
+    const openapiObj = require('@truesparrow/openapi-test-suite');
     
-    const ApiTestSuite = require('@plgworks/openapi-test-suite');
+    const ApiTestSuite = require('@truesparrow/openapi-test-suite');
     const serverIndex = 0; // Index of the server (to be hit) from the servers block of openapi.json
     const securityScheme = require('./examples/securityScheme.json');
     const apiSuiteObj = new ApiTestSuite(openApiObj, serverIndex, securityScheme);
