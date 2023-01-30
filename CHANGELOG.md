@@ -1,3 +1,6 @@
+## Openapi-test-suite v2.0.0
+- Republished package under @truesparrow
+
 ## Openapi-test-suite v1.0.1
 - LICENSE changes.
 

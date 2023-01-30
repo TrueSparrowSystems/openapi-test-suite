@@ -1,6 +1,6 @@
 {
-  "name": "@plgworks/openapi-test-suite",
-  "version": "1.0.1",
+  "name": "@truesparrow/openapi-test-suite",
+  "version": "2.0.0",
   "description": "DRY API test suite using openapi.json",
   "main": "index.js",
   "scripts": {
@@ -8,20 +8,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PLG-Works/openapi-test-suite.git"
+    "url": "git+https://github.com/TrueSparrowSystems/openapi-test-suite.git"
   },
   "keywords": [
     "openapi",
     "test suite"
   ],
-  "author": "PLG Works",
+  "author": "True Sparrow",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/PLG-Works/openapi-test-suite/issues"
+    "url": "https://github.com/TrueSparrowSystems/openapi-test-suite/issues"
   },
-  "homepage": "https://github.com/PLG-Works/openapi-test-suite#readme",
+  "homepage": "https://github.com/TrueSparrowSystems/openapi-test-suite#readme",
   "dependencies": {
-    "@plgworks/base": "^1.0.0",
+    "@truesparrow/base": "^2.0.0",
     "bignumber.js": "9.0.2",
     "html-entities": "2.3.3",
     "qs": "6.10.3",
